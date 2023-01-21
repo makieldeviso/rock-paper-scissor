@@ -12,17 +12,18 @@ function getPlayerChoice() {
     let restOfLetter = playerChoice.slice(1).toLowerCase();
     playerChoice = firstLetter + restOfLetter;
     return playerChoice;
-
-
 }
-
+// Declare Score Variables;
 let playerScore;
 let computerScore;
 
-function playRound () {
-    
-    let computerSelection = getComputerChoice();
-    let playerSelection = getPlayerChoice();
+
+function playRound (computerSelection, playerSelection) {
+
+    // Announces Player and Computer Selection
+    console.log(`   > Player Plays: ${playerSelection}!`);
+    console.log(`   > Computer Plays: ${computerSelection}!`);
+ 
     function rockVsPaperVsScissor() {
         // computer selects rock
         if (computerSelection === "Rock" && playerSelection === "Scissor") {
@@ -55,7 +56,6 @@ function playRound () {
     return rockVsPaperVsScissor();
 }
 
-
 function game() {
     playerScore = 0;
     computerScore = 0;
@@ -63,14 +63,19 @@ function game() {
         // Announces Round
             console.log(`ROUND ${i + 1}!`);
 
-        console.log(playRound());
-        console.log("--- Player Score: " + playerScore);
-        console.log("--- Computer Score: " + computerScore);
+        // executes the playRound Function
+        console.log(playRound(getComputerChoice(), getPlayerChoice()));
+
+        // Announces current Scores
+        console.log("   - Player Score: " + playerScore);
+        console.log("   - Computer Score: " + computerScore);
     }
 
     if (computerScore > playerScore) {
         return `You Ultimately Lose! Computer Wins by ${computerScore} to ${playerScore}!`;
+    } else if (computerScore === playerScore) {
+        return `Draw! Player Score: ${playerScore} VS Computer Score: ${computerScore}!`;
     } else {
-        return `You Ultimately Win! Player Wins by ${playerScore} to ${computerScore} `;
+        return `You Ultimately Win! Player Wins by ${playerScore} to ${computerScore}!`;
     }
 }
