@@ -7,11 +7,62 @@
     <title>Rock Paper Scissor</title>
     <meta name="author" content="Fred Mark Baldeviso">
     <meta name="description" content="Rock paper scissor against computer" >
-    <title>Document</title>
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    
+    <header>
+        <h1 class="title banner">JANKEN! じゃん拳</h1>
+        <h2 class="subtitle">Rock Paper Scissors</h2>
+        <p class="description">Fight for your place in the world.<br>
+            Defeat your opponent in:</p> 
+        <p class="game-mode"> Race to 5 Battle!</p> 
+    </header>
+    <main>
+        <section class="round">
+            <h3>Round 1</h3>
+        </section>
+
+        <section class="score-board">
+            <h3>SCORE BOARD</h3>
+            <div class=" scores">
+                <div class="player-score">
+                    <h4>PLAYER</h4>
+                    <p>0</p>
+                </div>
+                <div class="computer-score">
+                    <h4>COMPUTER</h4>
+                    <p>0</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="avatars">
+            <div class="player-avatar"></div>
+            <div class="vs">VS</div>
+            <div class="computer-avatar"></div>
+        </section>
+
+        <section class="play-area">
+            <div class="player-buttons">
+                <button class="rock">ROCK</button>
+                <button class="paper">PAPER</button>
+                <button class="scissors">SCISSORS</button>
+            </div>
+
+            <div class="computer-cards">
+                <div class="rock">ROCK</div>
+                <div class="paper">PAPER</div>
+                <div class="scissors">SCISSORS</div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>copyright fred mark</p>
+    </footer>
+
 </body>
 </html>

@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    height: 20vh;
+}
+
+main {
+    width: 1000px;
+    height: 75vh;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.round {
+    height:5vh;
+}
+
+.score-board {
+    height: 10vh;
+}
+
+.scores {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.player-avatar, .computer-avatar {
+    width: 400px;
+}
+
+.avatars {
+    height: 40vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+    
+
+.play-area {
+    height: 20vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+
+footer {
+    height: 5vh;
+}
