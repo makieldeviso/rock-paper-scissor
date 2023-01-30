@@ -53,6 +53,13 @@ main {
     height:10vh;
 }
 
+.round h1 {
+    display: inline-block;
+    font-size: 2.5rem;
+    padding: 3px;
+    margin: 10px;
+}
+
 .score-board {
     height: 10vh;
 }
@@ -98,7 +105,7 @@ main {
 
 .player-buttons {
     margin-left: 30px;
-    width: 500px;
+    width: 300px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -110,10 +117,15 @@ main {
     height: 90px;
 }
 
-.player-buttons .lock {
+.clicked {
+    filter: brightness(80%);
+    color: red;
+}
+
+
+.lock {
     width: 100px;
     height: 40px;
-    margin-left: 30px;
     padding: 10px 5px;
 }
 
