@@ -5,18 +5,52 @@
 }
 
 header {
-    height: 20vh;
+    height: 23vh;
+    margin: 0 auto;
+    text-align: center;
+    width: 1000px;
 }
+
+.title-banner {
+    font-size: 4rem;
+    line-height: 1;
+    padding-top: 10px;
+}
+
+.subtitle {
+    margin-bottom: 10px;
+}
+.game-mode {
+    font-size: 1.5rem;
+    margin-top: 3px;
+}
+
+.start {
+    font-size: 1.5rem;
+    padding: 10px;
+    margin: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 main {
     width: 1000px;
-    height: 75vh;
+    height: 72vh;
     margin: 0 auto;
     text-align: center;
 }
 
 .round {
-    height:5vh;
+    height:10vh;
 }
 
 .score-board {
@@ -29,12 +63,26 @@ main {
     align-items: center;
 }
 
+.player-score, .computer-score {
+    margin-top: 10px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
 .player-avatar, .computer-avatar {
-    width: 400px;
+    width: 200px;
+    height: 250px;
+}
+
+.player-hand, .computer-hand {
+    width:150px;
+    height: 150px;
 }
 
 .avatars {
-    height: 40vh;
+    height: 37vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -42,14 +90,44 @@ main {
     
 
 .play-area {
-    height: 20vh;
+    height: 14vh;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.player-buttons {
+    margin-left: 30px;
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 
 }
 
+.player-buttons button {
+    width: 90px;
+    height: 90px;
+}
+
+.player-buttons .lock {
+    width: 100px;
+    height: 40px;
+    margin-left: 30px;
+    padding: 10px 5px;
+}
+
+
+
+
 
 footer {
     height: 5vh;
+    margin: 0 auto;
+    text-align: center;
+    width: 1000px;
+}
+
+footer p {
+    padding: 5px;
 }
