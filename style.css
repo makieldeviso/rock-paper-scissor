@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Yuji+Boku&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&family=Roboto:wght@300&family=Secular+One&family=VT323&family=Yuji+Boku&display=swap');
 
 * {
     margin: 0;
@@ -6,54 +6,73 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
-/* body {
+body {
     z-index: 1;
     width: 1000px;
-    background-color: purple;
     margin: auto;
-}    */
-
+    box-shadow: 0 0 20px #c699c6, 0 0 20px #c699c6, 0 0 300px #c699c6;
+}   
 
 
 header {
-    height: 23vh;
+    height: 20vh;
     margin: 0 auto;
     text-align: center;
     width: 1000px;
-    background-color: #D527B7;
+    background-color: rgba(245, 110, 179, 80%);
 }
 
-.title-banner {
-    font-size: 4rem;
+.title-banner, .vs {
+    font-size: 3.5rem;
     line-height: 1;
-    padding-top: 10px;
+    padding: 10px 0;
+    font-family: 'Mochiy Pop P One', sans-serif;
+    color: #F9F7D9;
+    text-shadow: 0 0 20px #7F167F, 0 0 20px #7F167F, 0 0 300px #7F167F; ;
 }
 
 .subtitle {
-    margin-bottom: 10px;
+    color: #F9F7D9;
 }
-.game-mode {
+.description {
     font-size: 1.5rem;
     margin-top: 3px;
-}
-
-.start {
-    font-size: 1.5rem;
-    padding: 5px;
-    margin: 10px;
+    color: #F9F7D9;
 }
 
 
 main {
     width: 1000px;
-    height: 72vh;
+    height: 75vh;
     margin: 0 auto;
     text-align: center;
 }
 
 .round {
     height:8vh;
-    background-color: #FFC46B;
+    background-color: rgba(185, 243, 252, 90%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.start {
+    width: 120px;
+    height: 50px;
+    padding: 3px;
+    font-family: 'Secular One', sans-serif;
+    font-size: 1.3rem;
+    font-weight: bold;
+    background-color: #3C79F5;
+    color: white;
+    border: 3px solid #2DCDDF;
+    border-radius: 10px;
+    transition: box-shadow 0.1s ease-in-out, color 0.1s ease-in-out, scale 0.1s ease-in-out;
+}
+
+.start:hover {
+    scale: 1.1;
+    box-shadow: 0 0 10px #BDF2D5, 0 0 20px #BDF2D5, 0 0 30px #BDF2D5;
 }
 
 .round h1 {
@@ -61,12 +80,14 @@ main {
     font-size: 2.3rem;
     padding: 3px;
     margin: 5px;
+    font-family: 'Secular One', sans-serif;
+    color:#13005A;
 }
 
 .score-board {
     padding: 5px;
     height: 10vh;
-    background-color: #8A00D4;
+    background-color: rgba(3, 201, 136, 90%);
 }
 
 .score-board h3 {
@@ -99,7 +120,6 @@ main {
 
 
 
-
 .player-avatar, .computer-avatar {
     width: 200px;
     height: 250px;
@@ -111,16 +131,16 @@ main {
 }
 
 .avatars {
-    height: 37vh;
+    height: 39vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
     background-color: rgb(207, 255, 254, 50%);
 }
     
-
+/* styles buttons before click start */
 .play-area {
-    height: 17vh;
+    height: 18vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -143,75 +163,142 @@ main {
     font-family: 'Yuji Boku', serif;
     color: black;
     text-shadow: 3px 3px 3px #c699c6;
+    border: 1px solid #0A2647;
+}
+.player-buttons div {
+    transition: scale 0.1s ease-in-out;
 }
 
+.player-buttons div:hover {
+    scale: 1.1;
+}
 
 .player-buttons #rock {
     background-image: url("./images/rock.png");
     background-size: cover;
-    /* opacity: 50%; */
+    transition: box-shadow 0.1s ease-in-out, color 0.1s ease-in-out, text-shadow 0.1s ease-in-out;
+}
+
+.player-buttons #rock:hover {
+    background-image: url("./images/rock2.png");
+    color: transparent;
+    text-shadow: none;
+    box-shadow: 0 0 10px #CB1C8D, 0 0 20px #CB1C8D, 0 0 30px #CB1C8D;
 }
 
 .player-buttons #paper {
     background-image: url("./images/paper.png");
     background-size: cover;
-    /* opacity: 50%; */ 
+    transition: box-shadow 0.1s ease-in-out, color 0.1s ease-in-out, text-shadow 0.1s ease-in-out; 
+}
+
+.player-buttons #paper:hover {
+    background-image: url("./images/paper2.png");
+    color: transparent;
+    text-shadow: none;
+    box-shadow: 0 0 10px yellow, 0 0 20px yellow, 0 0 30px yellow;
 }
 
 .player-buttons #scissors{
     background-image: url("./images/scissors.png");
     background-size: cover;
-    /* opacity: 50%; */
+    transition: box-shadow 0.1s ease-in-out, color 0.1s ease-in-out, text-shadow 0.1s ease-in-out;
+}
+
+.player-buttons #scissors:hover {
+    background-image: url("./images/scissors2.png");
+    color: transparent;
+    text-shadow: none;
+    box-shadow: 0 0 10px #00E7FF, 0 0 20px #00E7FF, 0 0 30px #00E7FF;
 }
 
 .player-buttons p {
     font-weight: bold;
 }
+/* styles buttons before click end */
 
 
-
-
-.clicked {
-    filter: brightness(80%);
-    color: red;
+/* button styling when clicked  start*/
+#rock.clicked {
+    filter: saturate(300%);
+    background-image: url("./images/rock2.png");
+    color: transparent;
+    text-shadow: none;
+    box-shadow: 0 0 10px #CB1C8D, 0 0 20px #CB1C8D, 0 0 30px #CB1C8D;
 }
 
-
-.lock {
-    width: 100px;
-    height: 40px;
-    padding: 10px 5px;
+#paper.clicked {
+    filter: saturate(300%);
+    background-image: url("./images/paper2.png");
+    color: transparent;
+    text-shadow: none;
+    box-shadow: 0 0 10px yellow, 0 0 20px yellow, 0 0 30px yellow;
 }
 
-.reset {
+#scissors.clicked {
+    filter: saturate(300%);
+    background-image: url("./images/scissors2.png");
+    color: transparent;
+    text-shadow: none;
+    box-shadow: 0 0 10px #00E7FF, 0 0 20px #00E7FF, 0 0 30px #00E7FF;
+}
+
+/* button styling when clicked  end*/
+
+
+.lock, .reset {
     width: 120px;
-    height: 40px;
-    padding: 10px 5px;
+    height: 55px;
+    padding: 5px 5px;
+    font-family: 'Secular One', sans-serif;
+    font-size: 1.3rem;
+    font-weight: bold;
+    background-color: #379237;
+    color: white;
+    border: 5px solid #54B435;
+    border-radius: 10px;
+    transition: box-shadow 0.1s ease-in-out, color 0.1s ease-in-out, scale 0.1s ease-in-out;
+
 }
+
+.lock:hover, .reset:hover {
+    scale: 1.1;
+    box-shadow: 0 0 10px #BDF2D5, 0 0 20px #BDF2D5, 0 0 30px #BDF2D5;
+}
+
+
 
 
 .computer-dialogue {
-    width: 350px;
+    width: 400px;
     margin-right: 30px;
     display: flex;
     gap: 20px;
 }
-.face {
-    width: 90px;
-    height: 90px;
-}
+
 
 .dialogue {
-    width: 250px;
+    width: 300px;
     word-wrap: break-word;
+    border: 5px solid #93C6E7;
+    background-color: #B9F3FC ;
+    display: flex;
+    align-items: center;
 }
 
 .dialogue p {
-    width: 240px;
-    font-size: 1.3rem;
+    width: 280px;
+    font-size: 2.2rem;
     margin: 5px;
+    font-family: 'VT323', monospace;
 }
 
+.face {
+    width: 90px;
+    height: 90px;
+    border: 5px solid #93C6E7;
+    background-color: #B9F3FC ;
+}
 
 footer {
     height: 5vh;

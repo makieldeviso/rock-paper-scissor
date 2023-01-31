@@ -1,5 +1,14 @@
 document.querySelector(".start").addEventListener("click", startGame);
 
+// some global variables ----------------------------
+let playerScore = 0;
+let computerScore = 0;
+let dialogue = document.querySelector(".computer-dialogue p");
+
+let playerScoreBoard = document.querySelector(".player-score p");
+let computerScoreBoard = document.querySelector(".computer-score p");
+
+
 async function startGame() {
     document.querySelector(".round").removeChild(document.querySelector(".start"));
     let roundBanner = document.createElement("h1");
@@ -25,7 +34,7 @@ async function startGame() {
         }
 
         setTimeout(() => {
-            dialogue.textContent = "";
+            dialogue.textContent = "...";
             let playerButtons = document.querySelectorAll(".player-buttons button");
             playerButtons.forEach(button => button.addEventListener("click", cardSelect));
         }, 1000);
@@ -36,7 +45,7 @@ async function startGame() {
 
     let resetButton = document.createElement("button");
     resetButton.classList.add("reset");
-    resetButton.textContent = "RESET GAME";
+    resetButton.textContent = "RESET";
     document.querySelector(".lock-in").removeChild(document.querySelector(".lock"));  
     document.querySelector(".lock-in").appendChild(resetButton);  
 
@@ -97,13 +106,6 @@ function toggleStyle() {
 
 
 
-// some global variables ----------------------------
-let playerScore = 0;
-let computerScore = 0;
-let dialogue = document.querySelector(".computer-dialogue .dialogue");
-
-let playerScoreBoard = document.querySelector(".player-score p");
-let computerScoreBoard = document.querySelector(".computer-score p");
 
 
 // plays one round ----------------------------
