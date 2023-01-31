@@ -44,38 +44,43 @@ async function startGame() {
     function refresh() {
         location.reload()
     };
-
     }
 
-
+// randomly generate computer choice -------------------------
 function getComputerChoice() {
     let choicesArr = ["Rock", "Paper", "Scissors"];
     // computer choose a random RPS
     let computerChoice = choicesArr[Math.floor((Math.random() * choicesArr.length))];
     return computerChoice;
 }
-// toggled styles on click
-function toggleStyle() {
-    let clickedButtons = document.querySelectorAll(".player-buttons .clicked");
-        clickedButtons.forEach(button => button.classList.toggle("clicked"));
-}
 
+
+// gets user choice to play --------------------------
 let selected = "";
 function getPlayerChoice(playerSelect) {
     
     let playerButtons = document.querySelectorAll(".player-buttons button");
     
-
     let lockIn = document.querySelector(".lock");
     lockIn.addEventListener("click", returnSelected, {once: true});
     
     function returnSelected() {
-        toggleStyle(); //removes styling of player cards
-        playerButtons.forEach(button => button.removeEventListener("click", cardSelect));
-        playerSelect(selected);
-    }
-  
 
+        // checks if a card was selected
+        let clicked = false;
+        playerButtons.forEach(button => {
+            if (button.getAttribute("class") === "clicked") {
+                clicked = true;
+                toggleStyle(); //removes styling of player cards
+                playerButtons.forEach(button => button.removeEventListener("click", cardSelect));
+                playerSelect(selected);
+            }
+        });
+
+        if (!clicked) {
+            getPlayerChoice(playerSelect);
+        }
+    }
 }
 
 function cardSelect() {
@@ -84,8 +89,15 @@ function cardSelect() {
     this.classList.toggle("clicked");
 }
 
+// toggled styles on click
+function toggleStyle() {
+    let clickedButtons = document.querySelectorAll(".player-buttons .clicked");
+        clickedButtons.forEach(button => button.classList.toggle("clicked"));
+}
 
 
+
+// some global variables ----------------------------
 let playerScore = 0;
 let computerScore = 0;
 let dialogue = document.querySelector(".computer-dialogue .dialogue");
@@ -94,11 +106,11 @@ let playerScoreBoard = document.querySelector(".player-score p");
 let computerScoreBoard = document.querySelector(".computer-score p");
 
 
+// plays one round ----------------------------
 function playRound() {
     
     return new Promise (resolve => {
         
-
         getPlayerChoice(selected => {
             let playerFinal = selected;
             let computerFinal = getComputerChoice();
@@ -112,13 +124,11 @@ function playRound() {
             computerScoreBoard.textContent = `${computerScore}`;
 
             resolve();
-
         });
-
-    });
-   
+    }); 
   }
 
+//   changes dialogue according to result, part of playRound sequence
   function rockVsPaperVsScissors(computerSelection, playerSelection) {
     
     // computer selects rock
