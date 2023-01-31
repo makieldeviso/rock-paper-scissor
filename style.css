@@ -31,6 +31,7 @@ header {
     text-shadow: 0 0 20px #7F167F, 0 0 20px #7F167F, 0 0 300px #7F167F; ;
 }
 
+
 .subtitle {
     color: #F9F7D9;
 }
@@ -119,7 +120,6 @@ main {
 }
 
 
-
 .player-avatar, .computer-avatar {
     width: 200px;
     height: 250px;
@@ -128,6 +128,7 @@ main {
 .player-hand, .computer-hand {
     width:150px;
     height: 150px;
+    display: none;
 }
 
 .avatars {
@@ -138,6 +139,21 @@ main {
     background-color: rgb(207, 255, 254, 50%);
 }
     
+.avatars .computer-avatar{
+    background-image: url("https://media1.giphy.com/media/xV723nBI0NPa4V8kjg/giphy.gif?cid=ecf05e47sbvv633e91no51uajbk2l2rxfmlitzeia1ujsv8f&rid=giphy.gif&ct=s");
+    background-size: 220px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.avatars .player-avatar{
+    background-image: url("https://media1.giphy.com/media/SwD8zjSqnkz7mv6PtR/giphy.gif?cid=790b761136704740194c668196176ac072e4effd45f3bbb0&rid=giphy.gif&ct=s");
+    background-size: 300px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
 /* styles buttons before click start */
 .play-area {
     height: 18vh;
@@ -164,6 +180,7 @@ main {
     color: black;
     text-shadow: 3px 3px 3px #c699c6;
     border: 1px solid #0A2647;
+    border-radius: 50%;
 }
 .player-buttons div {
     transition: scale 0.1s ease-in-out;
@@ -175,7 +192,8 @@ main {
 
 .player-buttons #rock {
     background-image: url("./images/rock.png");
-    background-size: cover;
+    background-size: 100px;
+    background-position: center;
     transition: box-shadow 0.1s ease-in-out, color 0.1s ease-in-out, text-shadow 0.1s ease-in-out;
 }
 
@@ -188,7 +206,8 @@ main {
 
 .player-buttons #paper {
     background-image: url("./images/paper.png");
-    background-size: cover;
+    background-size: 100px;
+    background-position: center;
     transition: box-shadow 0.1s ease-in-out, color 0.1s ease-in-out, text-shadow 0.1s ease-in-out; 
 }
 
@@ -201,7 +220,8 @@ main {
 
 .player-buttons #scissors{
     background-image: url("./images/scissors.png");
-    background-size: cover;
+    background-size: 100px;
+    background-position: center;
     transition: box-shadow 0.1s ease-in-out, color 0.1s ease-in-out, text-shadow 0.1s ease-in-out;
 }
 
@@ -267,8 +287,6 @@ main {
 }
 
 
-
-
 .computer-dialogue {
     width: 400px;
     margin-right: 30px;
@@ -298,6 +316,12 @@ main {
     height: 90px;
     border: 5px solid #93C6E7;
     background-color: #B9F3FC ;
+    /* background-image: url("./images/comp-face.png"); */
+    background-image: url("https://media1.giphy.com/media/xV723nBI0NPa4V8kjg/giphy.gif?cid=ecf05e47sbvv633e91no51uajbk2l2rxfmlitzeia1ujsv8f&rid=giphy.gif&ct=s");
+    background-size: 200px;
+    background-position:40% 12%;
+    background-repeat: no-repeat;
+
 }
 
 footer {
