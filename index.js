@@ -31,7 +31,7 @@ async function startGame() {
         }, 1000);
 
         await playRound();
-        roundBanner.textContent = `Round ${i + 1}`;     
+        roundBanner.textContent = `Round ${i + 2}`;     
         }
 
     let resetButton = document.createElement("button");

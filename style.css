@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Yuji+Boku&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 /* body {
     z-index: 1;
@@ -36,10 +39,9 @@ header {
 
 .start {
     font-size: 1.5rem;
-    padding: 10px;
+    padding: 5px;
     margin: 10px;
 }
-
 
 
 main {
@@ -50,15 +52,15 @@ main {
 }
 
 .round {
-    height:10vh;
+    height:8vh;
     background-color: #FFC46B;
 }
 
 .round h1 {
     display: inline-block;
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     padding: 3px;
-    margin: 10px;
+    margin: 5px;
 }
 
 .score-board {
@@ -84,6 +86,10 @@ main {
     display: flex;
     justify-content: center;
     gap: 30px;
+}
+
+.player-score h4, .computer-score h4 {
+    font-size: 1.3rem;
 }
 
 .player-score p, .computer-score p {
@@ -114,7 +120,7 @@ main {
     
 
 .play-area {
-    height: 15vh;
+    height: 17vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -133,7 +139,37 @@ main {
 .player-buttons button {
     width: 90px;
     height: 90px;
+    font-size: 3.5rem;
+    font-family: 'Yuji Boku', serif;
+    color: black;
+    text-shadow: 3px 3px 3px #c699c6;
 }
+
+
+.player-buttons #rock {
+    background-image: url("./images/rock.png");
+    background-size: cover;
+    /* opacity: 50%; */
+}
+
+.player-buttons #paper {
+    background-image: url("./images/paper.png");
+    background-size: cover;
+    /* opacity: 50%; */ 
+}
+
+.player-buttons #scissors{
+    background-image: url("./images/scissors.png");
+    background-size: cover;
+    /* opacity: 50%; */
+}
+
+.player-buttons p {
+    font-weight: bold;
+}
+
+
+
 
 .clicked {
     filter: brightness(80%);
