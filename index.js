@@ -14,7 +14,7 @@ async function startGame() {
     let roundBanner = document.createElement("h1");
     roundBanner.textContent = "Round 1";
     document.querySelector(".round").appendChild(roundBanner);
-    dialogue.textContent = "QHDOUQDIBQIFVQI";
+    dialogue.textContent = "I have already calculated your defeat";
     
     for (let i = 0; i <= 100; i++) {
 
