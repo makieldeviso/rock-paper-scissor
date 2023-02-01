@@ -119,7 +119,7 @@ main {
     font-weight: bold;
 }
 
-
+/* avatars section start */
 .player-avatar, .computer-avatar {
     width: 200px;
     height: 250px;
@@ -128,7 +128,7 @@ main {
 .player-hand, .computer-hand {
     width:150px;
     height: 150px;
-    display: none;
+    display: none;  
 }
 
 .avatars {
@@ -152,6 +152,36 @@ main {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.Rock {
+    background-image: url("./images/rock2.png");
+    display: block;
+    background-size: 150px;
+    background-position: center;
+    display: block;
+}
+
+.Paper {
+    background-image: url("./images/paper2.png");
+    display: block;
+    background-size: 150px;
+    background-position: center;
+    display: block;
+}
+
+.Scissors {
+    background-image: url("./images/scissors2.png");
+    display: block;
+    background-size: 150px;
+    background-position: center;
+    display: block;
+}
+
+
+
+
+
+/* avatars section end */
 
 
 /* styles buttons before click start */

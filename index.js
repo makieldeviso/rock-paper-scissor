@@ -8,6 +8,10 @@ let dialogue = document.querySelector(".computer-dialogue p");
 let playerScoreBoard = document.querySelector(".player-score p");
 let computerScoreBoard = document.querySelector(".computer-score p");
 
+let playerHand = document.querySelector(".player-hand");
+let compHand = document.querySelector(".computer-hand");
+
+let hand = true; //something is on hand, used to toggle display of player hand
 
 async function startGame() {
     document.querySelector(".round").removeChild(document.querySelector(".start"));
@@ -33,11 +37,19 @@ async function startGame() {
             break
         }
 
+
         setTimeout(() => {
             dialogue.textContent = "...";
             let playerButtons = document.querySelectorAll(".player-buttons button");
             playerButtons.forEach(button => button.addEventListener("click", cardSelect));
-        }, 1000);
+           
+            // removes player and computer hands
+            
+            if (!hand) {
+                playerHand.classList.remove(`${selected}`);
+                compHand.classList.remove(`${compSelect}`);
+            };
+        }, 3000);
 
         await playRound();
         roundBanner.textContent = `Round ${i + 2}`;     
@@ -56,10 +68,12 @@ async function startGame() {
     }
 
 // randomly generate computer choice -------------------------
+let compSelect = ""; //send computer hands
 function getComputerChoice() {
     let choicesArr = ["Rock", "Paper", "Scissors"];
     // computer choose a random RPS
     let computerChoice = choicesArr[Math.floor((Math.random() * choicesArr.length))];
+    compSelect = computerChoice;
     return computerChoice;
 }
 
@@ -82,7 +96,13 @@ function getPlayerChoice(playerSelect) {
                 clicked = true;
                 toggleStyle(); //removes styling of player cards
                 playerButtons.forEach(button => button.removeEventListener("click", cardSelect));
+
                 playerSelect(selected);
+
+                // inserts played hands 
+                playerHand.classList.add(`${selected}`);
+                compHand.classList.add(`${compSelect}`);
+                hand = false; //removes hand after play
             }
         });
 
