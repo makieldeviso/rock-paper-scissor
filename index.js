@@ -49,7 +49,7 @@ async function startGame() {
                 playerHand.classList.remove(`${selected}`);
                 compHand.classList.remove(`${compSelect}`);
             };
-        }, 3000);
+        }, 1000);
 
         await playRound();
         roundBanner.textContent = `Round ${i + 2}`;     

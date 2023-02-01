@@ -128,7 +128,7 @@ main {
 .player-hand, .computer-hand {
     width:150px;
     height: 150px;
-    display: none;  
+    visibility: hidden; 
 }
 
 .avatars {
@@ -152,35 +152,28 @@ main {
     background-position: center;
     background-repeat: no-repeat;
 }
-
+/* played hands section start */
 .Rock {
     background-image: url("./images/rock2.png");
-    display: block;
-    background-size: 150px;
-    background-position: center;
-    display: block;
 }
 
 .Paper {
     background-image: url("./images/paper2.png");
-    display: block;
-    background-size: 150px;
-    background-position: center;
-    display: block;
 }
 
 .Scissors {
     background-image: url("./images/scissors2.png");
+}
+
+.Rock, .Paper, .Scissors {
     display: block;
     background-size: 150px;
     background-position: center;
-    display: block;
+    visibility: visible;
+    animation: slide 0.5s ease-in-out;
 }
 
-
-
-
-
+/* played hands section end */
 /* avatars section end */
 
 
@@ -380,3 +373,21 @@ body:before {
     background-repeat: no-repeat;
     opacity: 100%;
 }
+
+
+
+/* animations */
+
+@keyframes slide {
+    from {
+    filter: brightness(90%);
+    transform: translateX(-100%);
+    /* scale: 0.3; */
+    }
+    to {
+      transform: translateX(0);
+      transform: translateX(0);
+      /* scale: 1; */
+    }
+  }
+
