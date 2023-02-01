@@ -8,3 +8,5 @@ Dummy Dojo - https://giphy.com/dummydojo - https://media1.giphy.com/media/SwD8zj
 
 
 ProfessorLightWAV - https://media1.giphy.com/media/xV723nBI0NPa4V8kjg/giphy.gif?cid=ecf05e47sbvv633e91no51uajbk2l2rxfmlitzeia1ujsv8f&rid=giphy.gif&ct=s
+
+Daily Magazine

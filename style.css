@@ -50,7 +50,7 @@ main {
 }
 
 .round {
-    height:8vh;
+    height:calc(8vh + 10vh);  /* add the vh of the scoreboard to be visible later */
     background-color: rgba(185, 243, 252, 90%);
     display: flex;
     justify-content: center;
@@ -58,11 +58,11 @@ main {
 }
 
 .start {
-    width: 120px;
-    height: 50px;
+    width: 300px;
+    height: 100px;
     padding: 3px;
     font-family: 'Secular One', sans-serif;
-    font-size: 1.3rem;
+    font-size: 4.3rem;
     font-weight: bold;
     background-color: #3C79F5;
     color: white;
@@ -83,17 +83,14 @@ main {
     margin: 5px;
     font-family: 'Secular One', sans-serif;
     color:#13005A;
+    visibility: hidden;
 }
 
-.score-board {
-    padding: 5px;
+.score-board-sec {
+    padding: 10px;
     height: 10vh;
     background-color: rgba(3, 201, 136, 90%);
-}
-
-.score-board h3 {
-    font-size: 1.3rem;
-    font-style: italic;
+    display: none;
 }
 
 .scores {
@@ -103,23 +100,23 @@ main {
 }
 
 .player-score, .computer-score {
-    margin-top: 5px;
-    padding: 5px;
     display: flex;
     justify-content: center;
     gap: 30px;
 }
 
-.player-score h4, .computer-score h4 {
-    font-size: 1.3rem;
-}
-
 .player-score p, .computer-score p {
-    font-size: 1.3rem;
-    font-weight: bold;
+    font-size: 2.5rem;
+    
 }
 
 /* avatars section start */
+
+.vs img {
+    width: 250px;
+    filter: brightness(150%);
+}
+
 .player-avatar, .computer-avatar {
     width: 200px;
     height: 250px;
@@ -129,6 +126,7 @@ main {
     width:150px;
     height: 150px;
     visibility: hidden; 
+    opacity: 100%;
 }
 
 .avatars {
@@ -170,7 +168,18 @@ main {
     background-size: 150px;
     background-position: center;
     visibility: visible;
-    animation: slide 0.5s ease-in-out;
+    opacity: 100%;
+    animation: slideRight 0.5s ease-in-out;
+    transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.computer-hand.Rock, .computer-hand.Paper, .computer-hand.Scissors {
+    display: block;
+    background-size: 150px;
+    background-position: center;
+    visibility: visible;
+    animation: slideLeft 0.5s ease-in-out;
+    transition: visibility 1s ease-in-out, opacity 1s ease-in-out;
 }
 
 /* played hands section end */
@@ -192,7 +201,8 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    visibility: hidden;
 }
 
 .player-buttons button {
@@ -288,6 +298,9 @@ main {
 
 /* button styling when clicked  end*/
 
+.lock {
+    visibility: hidden;
+}
 
 .lock, .reset {
     width: 120px;
@@ -300,8 +313,7 @@ main {
     color: white;
     border: 5px solid #54B435;
     border-radius: 10px;
-    transition: box-shadow 0.1s ease-in-out, color 0.1s ease-in-out, scale 0.1s ease-in-out;
-
+    transition: box-shadow 0.1s ease-in-out, color 0.1s ease-in-out, scale 0.1s ease-in-out, visibility 0.3s ease-in-out, opacity 0.3s ease-in-out; 
 }
 
 .lock:hover, .reset:hover {
@@ -309,41 +321,47 @@ main {
     box-shadow: 0 0 10px #BDF2D5, 0 0 20px #BDF2D5, 0 0 30px #BDF2D5;
 }
 
-
 .computer-dialogue {
-    width: 400px;
+    width: 480px;
     margin-right: 30px;
     display: flex;
-    gap: 20px;
+    gap: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-
 .dialogue {
-    width: 300px;
+    width: max-content;
+    height: 120px;
     word-wrap: break-word;
     border: 5px solid #93C6E7;
     background-color: #B9F3FC ;
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 
 .dialogue p {
-    width: 280px;
+    width: max-content;
+    min-width: 200px;
+    max-width: 300px;
     font-size: 2.2rem;
     margin: 5px;
     font-family: 'VT323', monospace;
 }
 
 .face {
-    width: 90px;
-    height: 90px;
+    width: 120px;
+    height: 120px;
     border: 5px solid #93C6E7;
     background-color: #B9F3FC ;
     /* background-image: url("./images/comp-face.png"); */
     background-image: url("https://media1.giphy.com/media/xV723nBI0NPa4V8kjg/giphy.gif?cid=ecf05e47sbvv633e91no51uajbk2l2rxfmlitzeia1ujsv8f&rid=giphy.gif&ct=s");
-    background-size: 200px;
+    background-size: 270px;
     background-position:40% 12%;
     background-repeat: no-repeat;
+    flex-shrink: 0;
 
 }
 
@@ -374,11 +392,9 @@ body:before {
     opacity: 100%;
 }
 
-
-
 /* animations */
 
-@keyframes slide {
+@keyframes slideRight {
     from {
     filter: brightness(90%);
     transform: translateX(-100%);
@@ -386,8 +402,23 @@ body:before {
     }
     to {
       transform: translateX(0);
-      transform: translateX(0);
-      /* scale: 1; */
     }
   }
 
+  @keyframes slideLeft {
+    from {
+    filter: brightness(90%);
+    transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+
+
+  .fade-out {
+    visibility: hidden;
+    opacity: 0%;
+    transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }

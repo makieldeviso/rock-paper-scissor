@@ -3,6 +3,9 @@ document.querySelector(".start").addEventListener("click", startGame);
 // some global variables ----------------------------
 let playerScore = 0;
 let computerScore = 0;
+let playerScoreTally = "";
+let computerScoreTally = "";
+
 let dialogue = document.querySelector(".computer-dialogue p");
 
 let playerScoreBoard = document.querySelector(".player-score p");
@@ -12,6 +15,24 @@ let playerHand = document.querySelector(".player-hand");
 let compHand = document.querySelector(".computer-hand");
 
 let hand = true; //something is on hand, used to toggle display of player hand
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 async function startGame() {
     document.querySelector(".round").removeChild(document.querySelector(".start"));
@@ -37,24 +58,40 @@ async function startGame() {
             break
         }
 
-
+        // buttons fade out
+        document.querySelector(".player-buttons").classList.toggle("fade-out");
+        document.querySelector(".lock").classList.toggle("fade-out");
+        
         setTimeout(() => {
             dialogue.textContent = "...";
             let playerButtons = document.querySelectorAll(".player-buttons button");
             playerButtons.forEach(button => button.addEventListener("click", cardSelect));
            
             // removes player and computer hands
-            
             if (!hand) {
                 playerHand.classList.remove(`${selected}`);
                 compHand.classList.remove(`${compSelect}`);
             };
-        }, 1000);
+
+        // show hidden objects
+        document.querySelector(".player-buttons").style.visibility = "visible";
+        document.querySelector(".lock").style.visibility = "visible";
+        document.querySelector(".round h1").style.visibility = "visible";
+        document.querySelector(".round").style.height = "8vh";
+        document.querySelector(".score-board-sec").style.display = "block";
+        
+        
+
+        // buttons fade in
+        document.querySelector(".player-buttons").classList.toggle("fade-out");
+        document.querySelector(".lock").classList.toggle("fade-out");
+        }, 2000);
 
         await playRound();
         roundBanner.textContent = `Round ${i + 2}`;     
-        }
+        } //end of for loop -----
 
+// creates a reset button after the game
     let resetButton = document.createElement("button");
     resetButton.classList.add("reset");
     resetButton.textContent = "RESET";
@@ -142,8 +179,8 @@ function playRound() {
 
             rockVsPaperVsScissors(computerFinal, playerFinal);
 
-            playerScoreBoard.textContent = `${playerScore}`;
-            computerScoreBoard.textContent = `${computerScore}`;
+            playerScoreBoard.textContent = `${playerScoreTally}`;
+            computerScoreBoard.textContent = `${computerScoreTally}`;
 
             resolve();
         });
@@ -156,25 +193,31 @@ function playRound() {
     // computer selects rock
     if (computerSelection === "Rock" && playerSelection === "Scissors") {
         computerScore ++;
+        computerScoreTally += "🌸";
         dialogue.textContent =  "You Lose! Rock beats Scissors";
     } else if (computerSelection === "Rock" && playerSelection === "Paper") {
         playerScore++;
+        playerScoreTally += "🌸";
         dialogue.textContent = "You Win! Paper beats Rock";
 
     // computer selects paper
     } else if (computerSelection === "Paper" && playerSelection === "Rock") {
         computerScore ++;
+        computerScoreTally += "🌸";
         dialogue.textContent = "You Lose! Paper beats Rock";
     } else if (computerSelection === "Paper" && playerSelection === "Scissors") {
         playerScore ++;
+        playerScoreTally += "🌸";
         dialogue.textContent = "You Win! Scissors beats Paper";
 
     // computer selects Scissor
     } else if (computerSelection === "Scissors" && playerSelection === "Rock") {
         playerScore ++;
+        playerScoreTally += "🌸";
         dialogue.textContent = "You Win! Rock beats Scissors";
     } else if (computerSelection === "Scissors" && playerSelection === "Paper") {
         computerScore ++;
+        computerScoreTally += "🌸";
         dialogue.textContent = "You Lose! Scissors beats Paper";
     }  else {
         dialogue.textContent = "Draw!"
