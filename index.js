@@ -14,21 +14,14 @@ let computerScoreBoard = document.querySelector(".computer-score p");
 let playerHand = document.querySelector(".player-hand");
 let compHand = document.querySelector(".computer-hand");
 
+let playerSide = document.querySelector("#left-side");
+let computerSide = document.querySelector("#right-side");
+let avatarSecDiv = document.querySelectorAll(".avatars>div");
+
+let superBackground = document.querySelector(".superBack");
+
+
 let hand = true; //something is on hand, used to toggle display of player hand
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -46,9 +39,12 @@ async function startGame() {
         if (playerScore >=5 || computerScore >=5) {
             if (playerScore > computerScore) {
                 roundBanner.textContent = "YOU WIN!!!"
+                superBackground.classList.add("sakura");
                 dialogue.textContent = "UWU";
             } else if (playerScore < computerScore) {
                 roundBanner.textContent = "YOU LOSE!!!"
+                superBackground.style.backdropFilter = "brightness(50%)";
+                superBackground.classList.add("storm");
                 dialogue.textContent = "YEYYYY";
             }
             break;
@@ -72,6 +68,14 @@ async function startGame() {
                 playerHand.classList.remove(`${selected}`);
                 compHand.classList.remove(`${compSelect}`);
             };
+
+            // removes winner effects
+            avatarSecDiv.forEach(side => {
+                if (side.hasAttribute("class")) {
+                    side.removeAttribute("class")
+                }
+            });
+    
 
         // show hidden objects
         document.querySelector(".player-buttons").style.visibility = "visible";
@@ -194,30 +198,37 @@ function playRound() {
     if (computerSelection === "Rock" && playerSelection === "Scissors") {
         computerScore ++;
         computerScoreTally += "🌸";
+        computerSide.classList.toggle("win");
         dialogue.textContent =  "You Lose! Rock beats Scissors";
+        
     } else if (computerSelection === "Rock" && playerSelection === "Paper") {
         playerScore++;
         playerScoreTally += "🌸";
+        playerSide.classList.toggle("win");
         dialogue.textContent = "You Win! Paper beats Rock";
 
     // computer selects paper
     } else if (computerSelection === "Paper" && playerSelection === "Rock") {
         computerScore ++;
         computerScoreTally += "🌸";
+        computerSide.classList.toggle("win");
         dialogue.textContent = "You Lose! Paper beats Rock";
     } else if (computerSelection === "Paper" && playerSelection === "Scissors") {
         playerScore ++;
         playerScoreTally += "🌸";
+        playerSide.classList.toggle("win");
         dialogue.textContent = "You Win! Scissors beats Paper";
 
     // computer selects Scissor
     } else if (computerSelection === "Scissors" && playerSelection === "Rock") {
         playerScore ++;
         playerScoreTally += "🌸";
+        playerSide.classList.toggle("win");
         dialogue.textContent = "You Win! Rock beats Scissors";
     } else if (computerSelection === "Scissors" && playerSelection === "Paper") {
         computerScore ++;
         computerScoreTally += "🌸";
+        computerSide.classList.toggle("win");
         dialogue.textContent = "You Lose! Scissors beats Paper";
     }  else {
         dialogue.textContent = "Draw!"

@@ -8,7 +8,6 @@
 }
 body {
     z-index: 1;
-    width: 1000px;
     margin: auto;
     box-shadow: 0 0 20px #c699c6, 0 0 20px #c699c6, 0 0 300px #c699c6;
 }   
@@ -22,7 +21,7 @@ header {
     background-color: rgba(245, 110, 179, 80%);
 }
 
-.title-banner, .vs {
+.title-banner, #vs {
     font-size: 3.5rem;
     line-height: 1;
     padding: 10px 0;
@@ -112,14 +111,13 @@ main {
 
 /* avatars section start */
 
-.left-side, .right-side {
+#left-side, #right-side {
     display: flex;
     align-items: center;
 }
 
 
-
-.vs img {
+#vs img {
     width: 250px;
     filter: brightness(150%);
 }
@@ -385,7 +383,7 @@ footer p {
     color: #F9F7D9;
 }
 
-body:before {
+.before {
     content: '';
     position: fixed;
     top: 0;
@@ -423,9 +421,21 @@ body:before {
   }
 
 
-
+/* effects */
   .fade-out {
     visibility: hidden;
     opacity: 0%;
     transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  .win {
+    background-image: url("https://media4.giphy.com/media/xT9IgMgdur6larNA1a/giphy.gif?cid=ecf05e47epyxapk0sshidav9hjnpa91xn8qba5t82nz7uqrx&rid=giphy.gif&ct=s");
+  }
+
+  .sakura {
+    background-image: url("https://media4.giphy.com/media/JU1W8vq1vvfos/giphy.gif?cid=ecf05e47rgf1epkcba8e137o9tlv4usejww8koepb6ez20ro&rid=giphy.gif&ct=s") ;
+  }
+
+  .storm {
+    background-image: url("https://media3.giphy.com/media/3ohhwutQL0CDTq3kKA/giphy.gif?cid=ecf05e470a4v1gt506ufwx1flcsv6lds0noha7qk05sbsvyj&rid=giphy.gif&ct=s");
   }
