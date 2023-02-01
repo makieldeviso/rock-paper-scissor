@@ -112,6 +112,13 @@ main {
 
 /* avatars section start */
 
+.left-side, .right-side {
+    display: flex;
+    align-items: center;
+}
+
+
+
 .vs img {
     width: 250px;
     filter: brightness(150%);
