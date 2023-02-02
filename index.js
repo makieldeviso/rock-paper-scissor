@@ -1,5 +1,8 @@
 document.querySelector(".start").addEventListener("click", startGame);
 
+let playerButtons = document.querySelectorAll(".player-buttons button");
+let allButtons = document.querySelectorAll(".play-area button");
+
 // some global variables ----------------------------
 let playerScore = 0;
 let computerScore = 0;
@@ -23,7 +26,54 @@ let superBackground = document.querySelector(".superBack");
 
 let hand = true; //something is on hand, used to toggle display of player hand
 
+// audio tracks
+let bgm = new Audio("./sounds/bgm.mp3");
+    bgm.volume = 0.3;
+    bgm.loop = true;
 
+let hoverSound = new Audio("./sounds/hover-sound.mp3");
+
+function soundForWinOrLoss(gameResult) {
+    let lossSound = new Audio("./sounds/defeated.mp3");
+    let winSound = new Audio("./sounds/win.mp3");
+    bgm.pause();
+
+    if (gameResult === "win") { 
+        winSound.play();
+    } else if (gameResult === "loss") {
+        lossSound.play();
+    }
+}
+
+allButtons.forEach(button => button.addEventListener("mouseover", playHoverSound));
+allButtons.forEach(button => button.addEventListener("mouseout", playHoverSound));
+
+function playHoverSound(event) {   
+        if (event.type === "mouseover") {
+            hoverSound.play();
+         } else if (event.type === "mouseout") {
+            hoverSound.pause();
+         }  
+}
+
+function playClickSound() {
+    new Audio("./sounds/player-hand-click.mp3").play(); //don't put in variable to continuously play new sound on click
+}
+
+
+function playRoundResultSound(result) {
+    let winRoundSound = new Audio("./sounds/win-round.mp3");
+    let lossRoundSound = new Audio("./sounds/loss-round.mp3");
+    let drawRoundSound = new Audio ("./sounds/draw-round.mp3");
+
+    if (result === "win") {
+        winRoundSound.play();
+    } else if (result === "loss") {
+        lossRoundSound.play();
+    } else {
+        drawRoundSound.play();
+    }
+}
 
 
 
@@ -33,19 +83,25 @@ async function startGame() {
     roundBanner.textContent = "Round 1";
     document.querySelector(".round").appendChild(roundBanner);
     dialogue.textContent = "I have already calculated your defeat";
+    bgm.play();
     
-    for (let i = 0; i <= 100; i++) {
 
+
+
+    for (let i = 0; i <= 100; i++) {
+        
         if (playerScore >=5 || computerScore >=5) {
             if (playerScore > computerScore) {
                 roundBanner.textContent = "YOU WIN!!!"
                 superBackground.classList.add("sakura");
                 dialogue.textContent = "UWU";
+                soundForWinOrLoss("win");
             } else if (playerScore < computerScore) {
                 roundBanner.textContent = "YOU LOSE!!!"
                 superBackground.style.backdropFilter = "brightness(50%)";
                 superBackground.classList.add("storm");
                 dialogue.textContent = "YEYYYY";
+                soundForWinOrLoss("loss");
             }
             break;
         } else if (i === 100) {
@@ -54,13 +110,16 @@ async function startGame() {
             break
         }
 
+
+
+
         // buttons fade out
         document.querySelector(".player-buttons").classList.toggle("fade-out");
         document.querySelector(".lock").classList.toggle("fade-out");
         
         setTimeout(() => {
             dialogue.textContent = "...";
-            let playerButtons = document.querySelectorAll(".player-buttons button");
+            
             playerButtons.forEach(button => button.addEventListener("click", cardSelect));
            
             // removes player and computer hands
@@ -128,7 +187,7 @@ function getPlayerChoice(playerSelect) {
     let lockIn = document.querySelector(".lock");
     lockIn.addEventListener("click", returnSelected, {once: true});
     
-    function returnSelected() {
+    function returnSelected() { //lock in function
 
         // checks if a card was selected
         let clicked = false;
@@ -137,7 +196,7 @@ function getPlayerChoice(playerSelect) {
                 clicked = true;
                 toggleStyle(); //removes styling of player cards
                 playerButtons.forEach(button => button.removeEventListener("click", cardSelect));
-
+                
                 playerSelect(selected);
 
                 // inserts played hands 
@@ -154,9 +213,10 @@ function getPlayerChoice(playerSelect) {
 }
 
 function cardSelect() {
-    toggleStyle();
+    toggleStyle(); //removes styles of other buttons
     selected = this.value;
     this.classList.toggle("clicked");
+    playClickSound();
 }
 
 // toggled styles on click
@@ -164,9 +224,6 @@ function toggleStyle() {
     let clickedButtons = document.querySelectorAll(".player-buttons .clicked");
         clickedButtons.forEach(button => button.classList.toggle("clicked"));
 }
-
-
-
 
 
 // plays one round ----------------------------
@@ -200,12 +257,14 @@ function playRound() {
         computerScoreTally += "🌸";
         computerSide.classList.toggle("win");
         dialogue.textContent =  "You Lose! Rock beats Scissors";
+        playRoundResultSound("loss");
         
     } else if (computerSelection === "Rock" && playerSelection === "Paper") {
         playerScore++;
         playerScoreTally += "🌸";
         playerSide.classList.toggle("win");
         dialogue.textContent = "You Win! Paper beats Rock";
+        playRoundResultSound("win");
 
     // computer selects paper
     } else if (computerSelection === "Paper" && playerSelection === "Rock") {
@@ -213,11 +272,14 @@ function playRound() {
         computerScoreTally += "🌸";
         computerSide.classList.toggle("win");
         dialogue.textContent = "You Lose! Paper beats Rock";
+        playRoundResultSound("loss");
+
     } else if (computerSelection === "Paper" && playerSelection === "Scissors") {
         playerScore ++;
         playerScoreTally += "🌸";
         playerSide.classList.toggle("win");
         dialogue.textContent = "You Win! Scissors beats Paper";
+        playRoundResultSound("win");
 
     // computer selects Scissor
     } else if (computerSelection === "Scissors" && playerSelection === "Rock") {
@@ -225,13 +287,18 @@ function playRound() {
         playerScoreTally += "🌸";
         playerSide.classList.toggle("win");
         dialogue.textContent = "You Win! Rock beats Scissors";
+        playRoundResultSound("win");
+
     } else if (computerSelection === "Scissors" && playerSelection === "Paper") {
         computerScore ++;
         computerScoreTally += "🌸";
         computerSide.classList.toggle("win");
         dialogue.textContent = "You Lose! Scissors beats Paper";
+        playRoundResultSound("loss");
+
     }  else {
         dialogue.textContent = "Draw!"
+        playRoundResultSound("draw");
     }
 };
 
