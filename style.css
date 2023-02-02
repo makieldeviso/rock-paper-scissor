@@ -21,7 +21,7 @@ header {
     background-color: rgba(245, 110, 179, 80%);
 }
 
-.title-banner, #vs {
+.title-banner {
     font-size: 3.5rem;
     line-height: 1;
     padding: 10px 0;
@@ -29,7 +29,6 @@ header {
     color: #F9F7D9;
     text-shadow: 0 0 20px #7F167F, 0 0 20px #7F167F, 0 0 300px #7F167F; ;
 }
-
 
 .subtitle {
     color: #F9F7D9;
@@ -116,10 +115,33 @@ main {
     align-items: center;
 }
 
+#vs {
+    display: flex;
+    flex-direction: column;
+}
+
 
 #vs img {
-    width: 250px;
+    width: 190px;
     filter: brightness(150%);
+}
+
+
+.last-played {
+    display: flex;
+    justify-content: space-between;
+    margin: 2px;
+}
+#last-player, #last-computer {  
+    width: 50px;
+    height: 50px;
+}
+
+#last-player.Rock, #last-computer.Rock,
+#last-player.Paper, #last-computer.Paper,
+#last-player.Scissors, #last-computer.Scissors {
+    background-size: 50px;
+    border-radius: 50%;
 }
 
 .player-avatar, .computer-avatar {
@@ -163,6 +185,7 @@ main {
 .Paper {
     background-image: url("./images/paper2.png");
 }
+
 
 .Scissors {
     background-image: url("./images/scissors2.png");

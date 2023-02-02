@@ -86,6 +86,20 @@ function playRoundResultSound(result) {
     }
 }
 
+function lastPlayedToggle(action) {
+    let lastPlayedPlayer = document.querySelector("#last-player");
+    let lastPlayedComputer = document.querySelector("#last-computer");
+    
+
+    if (action === "add") {
+        lastPlayedPlayer.classList.add(`${selected}`);
+        lastPlayedComputer.classList.add(`${compSelect}`);
+    } else if (action === "remove") {
+        lastPlayedPlayer.removeAttribute("class");
+        lastPlayedComputer.removeAttribute("class");
+    }
+}
+
 
 
 async function startGame() {
@@ -213,6 +227,12 @@ function getPlayerChoice(playerSelect) {
                 // inserts played hands 
                 playerHand.classList.add(`${selected}`);
                 compHand.classList.add(`${compSelect}`);
+
+
+                // inserts last played hands
+                lastPlayedToggle("remove");
+                lastPlayedToggle("add");
+          
                 hand = false; //removes hand after play
             }
         });
