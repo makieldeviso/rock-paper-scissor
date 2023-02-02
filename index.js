@@ -1,7 +1,6 @@
 document.querySelector(".start").addEventListener("click", startGame);
 
-let playerButtons = document.querySelectorAll(".player-buttons button");
-let allButtons = document.querySelectorAll(".play-area button");
+
 
 // some global variables ----------------------------
 let playerScore = 0;
@@ -19,7 +18,7 @@ let compHand = document.querySelector(".computer-hand");
 
 let playerSide = document.querySelector("#left-side");
 let computerSide = document.querySelector("#right-side");
-let avatarSecDiv = document.querySelectorAll(".avatars>div");
+let avatarSecDiv = document.querySelectorAll(".avatars>div"); //selects the divs inside the avatars section
 
 let superBackground = document.querySelector(".superBack");
 
@@ -45,8 +44,20 @@ function soundForWinOrLoss(gameResult) {
     }
 }
 
-allButtons.forEach(button => button.addEventListener("mouseover", playHoverSound));
-allButtons.forEach(button => button.addEventListener("mouseout", playHoverSound));
+function addEventListeners() {
+    let playerButtons = document.querySelectorAll(".player-buttons button");
+        playerButtons.forEach(button => button.addEventListener("click", cardSelect));
+
+    let allButtons = document.querySelectorAll(".play-area button");
+        allButtons.forEach(button => button.addEventListener("mouseover", playHoverSound));
+        allButtons.forEach(button => button.addEventListener("mouseout", playHoverSound));
+}
+
+function removeHoverListener() {
+    let allButtons = document.querySelectorAll(".play-area button");       
+        allButtons.forEach(button => button.removeEventListener("mouseover", playHoverSound));
+        allButtons.forEach(button => button.removeEventListener("mouseout", playHoverSound));
+}
 
 function playHoverSound(event) {   
         if (event.type === "mouseover") {
@@ -86,8 +97,6 @@ async function startGame() {
     bgm.play();
     
 
-
-
     for (let i = 0; i <= 100; i++) {
         
         if (playerScore >=5 || computerScore >=5) {
@@ -111,17 +120,16 @@ async function startGame() {
         }
 
 
-
-
         // buttons fade out
         document.querySelector(".player-buttons").classList.toggle("fade-out");
         document.querySelector(".lock").classList.toggle("fade-out");
+
         
         setTimeout(() => {
             dialogue.textContent = "...";
             
-            playerButtons.forEach(button => button.addEventListener("click", cardSelect));
-           
+            addEventListeners();
+                
             // removes player and computer hands
             if (!hand) {
                 playerHand.classList.remove(`${selected}`);
@@ -195,8 +203,11 @@ function getPlayerChoice(playerSelect) {
             if (button.getAttribute("class") === "clicked") {
                 clicked = true;
                 toggleStyle(); //removes styling of player cards
+
                 playerButtons.forEach(button => button.removeEventListener("click", cardSelect));
-                
+
+                removeHoverListener();
+
                 playerSelect(selected);
 
                 // inserts played hands 
