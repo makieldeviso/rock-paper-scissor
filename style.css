@@ -81,7 +81,6 @@ main {
     margin: 5px;
     font-family: 'Secular One', sans-serif;
     color:#13005A;
-    visibility: hidden;
 }
 
 .score-board-sec {
@@ -232,7 +231,6 @@ main {
     justify-content: space-between;
     align-items: center;
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-    visibility: hidden;
 }
 
 .player-buttons button {
@@ -327,10 +325,6 @@ main {
 }
 
 /* button styling when clicked  end*/
-
-.lock {
-    visibility: hidden;
-}
 
 .lock, .reset {
     width: 120px;
@@ -463,4 +457,9 @@ footer p {
 
   .storm {
     background-image: url("https://media3.giphy.com/media/3ohhwutQL0CDTq3kKA/giphy.gif?cid=ecf05e470a4v1gt506ufwx1flcsv6lds0noha7qk05sbsvyj&rid=giphy.gif&ct=s");
+  }
+
+
+  .hidden {
+    visibility: hidden;
   }

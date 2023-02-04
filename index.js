@@ -1,7 +1,6 @@
 document.querySelector(".start").addEventListener("click", startGame);
 
 
-
 // some global variables ----------------------------
 let playerScore = 0;
 let computerScore = 0;
@@ -26,7 +25,7 @@ let superBackground = document.querySelector(".superBack");
 let hand = true; //something is on hand, used to toggle display of player hand
 
 
-
+// event functions start -------
 function addEventListeners() {
     let playerButtons = document.querySelectorAll(".player-buttons button");
         playerButtons.forEach(button => button.addEventListener("click", cardSelect));
@@ -42,6 +41,20 @@ function removeHoverListener() {
         allButtons.forEach(button => button.removeEventListener("mouseout", playHoverSound));
 }
 
+function lastPlayedToggle(action) {
+    let lastPlayedPlayer = document.querySelector("#last-player");
+    let lastPlayedComputer = document.querySelector("#last-computer");
+    
+
+    if (action === "add") {
+        lastPlayedPlayer.classList.add(`${selected}`);
+        lastPlayedComputer.classList.add(`${compSelect}`);
+    } else if (action === "remove") {
+        lastPlayedPlayer.removeAttribute("class");
+        lastPlayedComputer.removeAttribute("class");
+    }
+}
+
 function putWinnerOnCenter(winner) {
     vsDiv.style.display = "none";
     playerHand.style.display = "none";
@@ -49,10 +62,10 @@ function putWinnerOnCenter(winner) {
 
     if (winner === "computer") {
         playerSide.style.display = "none"; 
-        computerSide.style.animation = "slideLeft 1s ease-in-out"
+        computerSide.style.animation = "slideLeft 1s ease-in-out";
     } else if (winner === "player") {
         computerSide.style.display = "none";
-        playerSide.style.animation = "slideRight 1s ease-in-out"
+        playerSide.style.animation = "slideRight 1s ease-in-out";
     }
 }
 
@@ -87,7 +100,6 @@ function playClickSound() {
     new Audio("./sounds/player-hand-click.mp3").play(); //don't put in variable to continuously play new sound on click
 }
 
-
 function playRoundResultSound(result) {
     let winRoundSound = new Audio("./sounds/win-round.mp3");
     let lossRoundSound = new Audio("./sounds/loss-round.mp3");
@@ -104,21 +116,9 @@ function playRoundResultSound(result) {
 // Audio functions end ----------
 
 
-function lastPlayedToggle(action) {
-    let lastPlayedPlayer = document.querySelector("#last-player");
-    let lastPlayedComputer = document.querySelector("#last-computer");
-    
-
-    if (action === "add") {
-        lastPlayedPlayer.classList.add(`${selected}`);
-        lastPlayedComputer.classList.add(`${compSelect}`);
-    } else if (action === "remove") {
-        lastPlayedPlayer.removeAttribute("class");
-        lastPlayedComputer.removeAttribute("class");
-    }
-}
 
 
+// starts the game ---------
 
 async function startGame() {
 
@@ -126,6 +126,7 @@ async function startGame() {
     document.querySelector(".round").removeChild(document.querySelector(".start"));
     let roundBanner = document.createElement("h1");
     roundBanner.textContent = "Round 1";
+    roundBanner.setAttribute("class", "hidden");
     document.querySelector(".round").appendChild(roundBanner);
 
 // makes first computer dialogue after starting
@@ -145,7 +146,7 @@ async function startGame() {
 // loops the game rounds to specified required win score
     for (let i = 0; i <= 100; i++) {
         
-        if (playerScore >=1 || computerScore >=1) {
+        if (playerScore >=5 || computerScore >=5) {
             if (playerScore > computerScore) {
                 roundBanner.textContent = "YOU WIN!!!"
                 superBackground.classList.add("sakura");
@@ -184,9 +185,7 @@ async function startGame() {
             }
         }
 
-        
-
-        
+              
         setTimeout(() => {
             dialogue.textContent = "...";
             
@@ -209,11 +208,13 @@ async function startGame() {
         // show hidden objects
         
         
+        let hiddenItems = document.querySelectorAll(".hidden");
+        hiddenItems.forEach(item => {
+            if (item.hasAttribute("class") && item.getAttribute("class").split(" ").includes("hidden")) {
+                item.classList.remove("hidden");
+            }
+        });
 
-
-        document.querySelector(".player-buttons").style.visibility = "visible";
-        document.querySelector(".lock").style.visibility = "visible";
-        document.querySelector(".round h1").style.visibility = "visible";
         document.querySelector(".round").style.height = "8vh";
         document.querySelector(".score-board-sec").style.display = "block";
         
@@ -241,6 +242,79 @@ async function startGame() {
     };
     }
 
+// plays one round ----------------------------
+function playRound() {
+    
+    return new Promise (resolve => {
+        
+        getPlayerChoice(selected => {
+            let playerFinal = selected;
+            let computerFinal = getComputerChoice();
+
+            rockVsPaperVsScissors(computerFinal, playerFinal);
+
+            playerScoreBoard.textContent = `${playerScoreTally}`;
+            computerScoreBoard.textContent = `${computerScoreTally}`;
+
+            resolve();
+        });
+    }); 
+  }
+
+//   changes dialogue according to result, part of playRound sequence
+  function rockVsPaperVsScissors(computerSelection, playerSelection) {
+    
+    function addScoreToWinner(winner) {
+        if (winner === "computer") {
+            computerScore ++;
+            computerScoreTally += "🌸";
+            computerSide.classList.toggle("win");
+            playRoundResultSound("loss");
+        } else if (winner === "player") {
+            playerScore++;
+            playerScoreTally += "🌸";
+            playerSide.classList.toggle("win");
+            playRoundResultSound("win");
+        }
+    }
+
+    // computer selects rock
+    if (computerSelection === "Rock" && playerSelection === "Scissors") {
+        // reusable function to add score to round winner 
+       
+        addScoreToWinner("computer");
+        dialogue.textContent =  "You Lose! Rock beats Scissors";  
+        
+    } else if (computerSelection === "Rock" && playerSelection === "Paper") {
+        addScoreToWinner("player");
+        dialogue.textContent = "You Win! Paper beats Rock";      
+
+    // computer selects paper
+    } else if (computerSelection === "Paper" && playerSelection === "Rock") {
+        addScoreToWinner("computer");
+        dialogue.textContent = "You Lose! Paper beats Rock";    
+
+    } else if (computerSelection === "Paper" && playerSelection === "Scissors") {
+        addScoreToWinner("player");
+        dialogue.textContent = "You Win! Scissors beats Paper";      
+
+    // computer selects Scissor
+    } else if (computerSelection === "Scissors" && playerSelection === "Rock") {
+        addScoreToWinner("player");
+        dialogue.textContent = "You Win! Rock beats Scissors";
+
+    } else if (computerSelection === "Scissors" && playerSelection === "Paper") {
+        addScoreToWinner("computer");
+        dialogue.textContent = "You Lose! Scissors beats Paper";
+        
+
+    }  else {
+        dialogue.textContent = "Draw!"
+        playRoundResultSound("draw");
+    }
+};
+
+
 // randomly generate computer choice -------------------------
 let compSelect = ""; //send computer hands
 function getComputerChoice() {
@@ -250,7 +324,6 @@ function getComputerChoice() {
     compSelect = computerChoice;
     return computerChoice;
 }
-
 
 // gets user choice to play --------------------------
 let selected = "";
@@ -308,80 +381,4 @@ function toggleStyle() {
         clickedButtons.forEach(button => button.classList.toggle("clicked"));
 }
 
-
-// plays one round ----------------------------
-function playRound() {
-    
-    return new Promise (resolve => {
-        
-        getPlayerChoice(selected => {
-            let playerFinal = selected;
-            let computerFinal = getComputerChoice();
-
-            console.log(playerFinal);
-            console.log(computerFinal);
-
-            rockVsPaperVsScissors(computerFinal, playerFinal);
-
-            playerScoreBoard.textContent = `${playerScoreTally}`;
-            computerScoreBoard.textContent = `${computerScoreTally}`;
-
-            resolve();
-        });
-    }); 
-  }
-
-//   changes dialogue according to result, part of playRound sequence
-  function rockVsPaperVsScissors(computerSelection, playerSelection) {
-    
-    // computer selects rock
-    if (computerSelection === "Rock" && playerSelection === "Scissors") {
-        computerScore ++;
-        computerScoreTally += "🌸";
-        computerSide.classList.toggle("win");
-        dialogue.textContent =  "You Lose! Rock beats Scissors";
-        playRoundResultSound("loss");
-        
-    } else if (computerSelection === "Rock" && playerSelection === "Paper") {
-        playerScore++;
-        playerScoreTally += "🌸";
-        playerSide.classList.toggle("win");
-        dialogue.textContent = "You Win! Paper beats Rock";
-        playRoundResultSound("win");
-
-    // computer selects paper
-    } else if (computerSelection === "Paper" && playerSelection === "Rock") {
-        computerScore ++;
-        computerScoreTally += "🌸";
-        computerSide.classList.toggle("win");
-        dialogue.textContent = "You Lose! Paper beats Rock";
-        playRoundResultSound("loss");
-
-    } else if (computerSelection === "Paper" && playerSelection === "Scissors") {
-        playerScore ++;
-        playerScoreTally += "🌸";
-        playerSide.classList.toggle("win");
-        dialogue.textContent = "You Win! Scissors beats Paper";
-        playRoundResultSound("win");
-
-    // computer selects Scissor
-    } else if (computerSelection === "Scissors" && playerSelection === "Rock") {
-        playerScore ++;
-        playerScoreTally += "🌸";
-        playerSide.classList.toggle("win");
-        dialogue.textContent = "You Win! Rock beats Scissors";
-        playRoundResultSound("win");
-
-    } else if (computerSelection === "Scissors" && playerSelection === "Paper") {
-        computerScore ++;
-        computerScoreTally += "🌸";
-        computerSide.classList.toggle("win");
-        dialogue.textContent = "You Lose! Scissors beats Paper";
-        playRoundResultSound("loss");
-
-    }  else {
-        dialogue.textContent = "Draw!"
-        playRoundResultSound("draw");
-    }
-};
 
