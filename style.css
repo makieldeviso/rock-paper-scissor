@@ -147,6 +147,8 @@ main {
 .player-avatar, .computer-avatar {
     width: 200px;
     height: 250px;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .player-hand, .computer-hand {
@@ -162,21 +164,17 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(207, 255, 254, 50%);
+    background-color: rgba(207, 241, 255, 0.5);
 }
     
 .avatars .computer-avatar{
     background-image: url("https://media1.giphy.com/media/xV723nBI0NPa4V8kjg/giphy.gif?cid=ecf05e47sbvv633e91no51uajbk2l2rxfmlitzeia1ujsv8f&rid=giphy.gif&ct=s");
     background-size: 220px;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 .avatars .player-avatar{
     background-image: url("https://media1.giphy.com/media/SwD8zjSqnkz7mv6PtR/giphy.gif?cid=790b761136704740194c668196176ac072e4effd45f3bbb0&rid=giphy.gif&ct=s");
     background-size: 300px;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 /* played hands section start */
 .Rock {
@@ -380,7 +378,6 @@ main {
     height: 120px;
     border: 5px solid #93C6E7;
     background-color: #B9F3FC ;
-    /* background-image: url("./images/comp-face.png"); */
     background-image: url("https://media1.giphy.com/media/xV723nBI0NPa4V8kjg/giphy.gif?cid=ecf05e47sbvv633e91no51uajbk2l2rxfmlitzeia1ujsv8f&rid=giphy.gif&ct=s");
     background-size: 270px;
     background-position:40% 12%;
@@ -422,7 +419,6 @@ footer p {
     from {
     filter: brightness(90%);
     transform: translateX(-100%);
-    /* scale: 0.3; */
     }
     to {
       transform: translateX(0);
@@ -459,7 +455,211 @@ footer p {
     background-image: url("https://media3.giphy.com/media/3ohhwutQL0CDTq3kKA/giphy.gif?cid=ecf05e470a4v1gt506ufwx1flcsv6lds0noha7qk05sbsvyj&rid=giphy.gif&ct=s");
   }
 
-
   .hidden {
     visibility: hidden;
   }
+
+
+  /* sections */
+
+  @media screen and (max-width: 999px) {
+    main, header, main, footer {
+        width: 100vw;
+    }
+    header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        height: 20vh;
+    }
+    main {
+        height: 75vh;
+    }
+    footer {
+        height: 5vh;
+    }
+
+    h1.title-banner {
+        font-size: calc(2rem + 1vw);
+        min-width: 350px;
+    }
+    h3.subtitle {
+        min-width: 350px;
+        font-size: calc(1rem + 1vw);
+    }
+    p.description {
+        min-width: 350px;
+        font-size: calc(1rem + 1vw);
+    }
+    button.start {
+        font-size: 3rem;
+        width: 200px;
+        height: 75px; 
+    }
+
+    div.round {
+        height: 15vh; /* ------------------------------------- */
+        
+    }
+
+    .round h1 {
+        font-size: 1.5rem;
+    }
+
+    .scores {
+        height: 100%;
+    }
+
+    div.score-board-sec {
+        height: max-content;
+        padding: 2px;
+        height: 5vh; /* ------------------------------------- */
+    }
+
+    div.avatars {
+        width: 100vw;
+        height: 27vh; /* ------------------------------------- */
+    }
+
+
+
+    .player-score p, .computer-score p {
+        font-size: calc(1rem + 1vw);
+    }
+
+    #left-side, #right-side {
+        width: 40vw;
+        height: 100%;
+        
+    }
+
+    #vs {
+        width: 20vw;
+        height: 100%;
+    }
+    #vs img {
+        width: 100%;
+        max-height: 160px;
+    }
+
+    .avatars .player-avatar {
+        background-size: 140%;
+    }
+    .avatars .computer-avatar {
+        background-size: 100%;
+    }
+
+    .player-hand, .computer-hand {
+        width: 150px;
+    }
+    .Rock, .Paper, .Scissors {
+        background-size: 100%;
+        background-repeat: no-repeat;
+    }
+    .computer-hand.Rock, .computer-hand.Paper, .computer-hand.Scissors {
+        background-size: 100%;
+        background-repeat: no-repeat;
+    }
+
+    #last-player.Rock, #last-computer.Rock,
+    #last-player.Paper, #last-computer.Paper,
+    #last-player.Scissors, #last-computer.Scissors {
+    background-size: 100%;
+}
+
+
+div.play-area {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 35vh; /* ------------------------------------- */
+    padding: 5px;
+}
+.computer-dialogue {
+    order: 1;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 3px;
+    height: 10vh;
+    width: 100vw;
+}
+div.face {
+    height: 70px;
+    width: 70px;
+    background-size: 300%;
+    background-position:40% 12%;
+
+}
+.computer-dialogue p {
+    width: 100%;
+    font-size: calc(1.3rem + 1vw);
+    
+    
+}
+.dialogue {
+    height: 70px;
+}
+
+.player-buttons {
+    margin: 0;
+    padding: 10px;
+    justify-content: center;
+    gap:15px;
+    align-items: center;
+    order: 2;
+    width: 100%;
+    height: 15vh;
+}
+
+button#paper, button#rock, button#scissors {
+    
+    width: 70px;
+    height: 70px;
+    font-size: 2.8rem;
+}
+
+.player-buttons #rock, 
+.player-buttons #paper, 
+.player-buttons #scissors {
+    
+    background-size: 120%;
+    background-repeat: no-repeat;
+}
+
+.lock-in {
+    order: 3;
+    width: 100%;
+    height:5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lock {
+    font-size: 1.3rem;
+    height: 48px;
+    margin-top: 5px;
+}
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer p {
+    font-size: calc(0.9rem + 0.5vw);
+    min-width: 360px;
+}
+
+.before {
+    background-position:center;
+}
+
+}
+
+
+
+
