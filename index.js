@@ -18,14 +18,45 @@ let compHand = document.querySelector(".computer-hand");
 
 let playerSide = document.querySelector("#left-side");
 let computerSide = document.querySelector("#right-side");
+let vsDiv = document.querySelector("#vs");
 let avatarSecDiv = document.querySelectorAll(".avatars>div"); //selects the divs inside the avatars section
 
 let superBackground = document.querySelector(".superBack");
 
-
 let hand = true; //something is on hand, used to toggle display of player hand
 
-// audio tracks
+
+
+function addEventListeners() {
+    let playerButtons = document.querySelectorAll(".player-buttons button");
+        playerButtons.forEach(button => button.addEventListener("click", cardSelect));
+
+    let allButtons = document.querySelectorAll(".play-area button");
+        allButtons.forEach(button => button.addEventListener("mouseover", playHoverSound));
+        allButtons.forEach(button => button.addEventListener("mouseout", playHoverSound));
+}
+
+function removeHoverListener() {
+    let allButtons = document.querySelectorAll(".play-area button");       
+        allButtons.forEach(button => button.removeEventListener("mouseover", playHoverSound));
+        allButtons.forEach(button => button.removeEventListener("mouseout", playHoverSound));
+}
+
+function putWinnerOnCenter(winner) {
+    vsDiv.style.display = "none";
+    playerHand.style.display = "none";
+    compHand.style.display = "none";
+
+    if (winner === "computer") {
+        playerSide.style.display = "none"; 
+        computerSide.style.animation = "slideLeft 1s ease-in-out"
+    } else if (winner === "player") {
+        computerSide.style.display = "none";
+        playerSide.style.animation = "slideRight 1s ease-in-out"
+    }
+}
+
+// Audio functions start ----------
 let bgm = new Audio("./sounds/bgm.mp3");
     bgm.volume = 0.3;
     bgm.loop = true;
@@ -42,21 +73,6 @@ function soundForWinOrLoss(gameResult) {
     } else if (gameResult === "loss") {
         lossSound.play();
     }
-}
-
-function addEventListeners() {
-    let playerButtons = document.querySelectorAll(".player-buttons button");
-        playerButtons.forEach(button => button.addEventListener("click", cardSelect));
-
-    let allButtons = document.querySelectorAll(".play-area button");
-        allButtons.forEach(button => button.addEventListener("mouseover", playHoverSound));
-        allButtons.forEach(button => button.addEventListener("mouseout", playHoverSound));
-}
-
-function removeHoverListener() {
-    let allButtons = document.querySelectorAll(".play-area button");       
-        allButtons.forEach(button => button.removeEventListener("mouseover", playHoverSound));
-        allButtons.forEach(button => button.removeEventListener("mouseout", playHoverSound));
 }
 
 function playHoverSound(event) {   
@@ -85,6 +101,8 @@ function playRoundResultSound(result) {
         drawRoundSound.play();
     }
 }
+// Audio functions end ----------
+
 
 function lastPlayedToggle(action) {
     let lastPlayedPlayer = document.querySelector("#last-player");
@@ -103,40 +121,70 @@ function lastPlayedToggle(action) {
 
 
 async function startGame() {
+
+// initiates the game, puts round banner
     document.querySelector(".round").removeChild(document.querySelector(".start"));
     let roundBanner = document.createElement("h1");
     roundBanner.textContent = "Round 1";
     document.querySelector(".round").appendChild(roundBanner);
-    dialogue.textContent = "I have already calculated your defeat";
-    bgm.play();
-    
 
+// makes first computer dialogue after starting
+    dialogue.textContent = "I have already calculated your defeat";
+
+//plays bgm music
+    bgm.play();
+
+// places the avatar in the center with animation by changing display to block 
+    playerSide.style.animation = "slideLeft 1s ease-in-out"
+    computerSide.style.animation = "slideRight 1s ease-in-out"
+    playerHand.style.display = "block";
+    compHand.style.display = "block";
+    document.querySelector(".avatars").style.justifyContent = "space-around";
+    vsDiv.style.display = "block";
+
+// loops the game rounds to specified required win score
     for (let i = 0; i <= 100; i++) {
         
-        if (playerScore >=5 || computerScore >=5) {
+        if (playerScore >=1 || computerScore >=1) {
             if (playerScore > computerScore) {
                 roundBanner.textContent = "YOU WIN!!!"
                 superBackground.classList.add("sakura");
-                dialogue.textContent = "UWU";
+                dialogue.textContent = "THiS cAn'T bE. HOw dID YoU bEAt mE?!";
+                fadeInFadeOut("fade-out"); //buttons fade out
                 soundForWinOrLoss("win");
+                putWinnerOnCenter("player");
             } else if (playerScore < computerScore) {
                 roundBanner.textContent = "YOU LOSE!!!"
                 superBackground.style.backdropFilter = "brightness(50%)";
                 superBackground.classList.add("storm");
-                dialogue.textContent = "YEYYYY";
+                dialogue.textContent = "Know your place, Hooman!";
+                fadeInFadeOut("fade-out");  //buttons fade out
                 soundForWinOrLoss("loss");
+                putWinnerOnCenter("computer");
             }
             break;
+
         } else if (i === 100) {
             roundBanner.textContent = "THIS IS FUTILE, DRAW!!!"
             dialogue.textContent = "GET A LIFE!";
-            break
+            break;
         }
 
 
         // buttons fade out
-        document.querySelector(".player-buttons").classList.toggle("fade-out");
-        document.querySelector(".lock").classList.toggle("fade-out");
+        fadeInFadeOut("fade-out");
+
+        function fadeInFadeOut(action) {
+            if (action === "fade-out") {
+                document.querySelector(".player-buttons").classList.toggle("fade-out");
+                document.querySelector(".lock").classList.toggle("fade-out");
+            } else if (action === "fade-in") {
+                document.querySelector(".player-buttons").classList.toggle("fade-out");
+                document.querySelector(".lock").classList.toggle("fade-out");
+            }
+        }
+
+        
 
         
         setTimeout(() => {
@@ -159,21 +207,25 @@ async function startGame() {
     
 
         // show hidden objects
+        
+        
+
+
         document.querySelector(".player-buttons").style.visibility = "visible";
         document.querySelector(".lock").style.visibility = "visible";
         document.querySelector(".round h1").style.visibility = "visible";
         document.querySelector(".round").style.height = "8vh";
         document.querySelector(".score-board-sec").style.display = "block";
         
-        
-
         // buttons fade in
-        document.querySelector(".player-buttons").classList.toggle("fade-out");
-        document.querySelector(".lock").classList.toggle("fade-out");
+        fadeInFadeOut("fade-in");
+
+        roundBanner.textContent = `Round ${i + 1}`;
         }, 2000);
 
-        await playRound();
-        roundBanner.textContent = `Round ${i + 2}`;     
+// play another round when required score is not yet met
+        await playRound(); 
+             
         } //end of for loop -----
 
 // creates a reset button after the game

@@ -118,6 +118,7 @@ main {
 #vs {
     display: flex;
     flex-direction: column;
+    display: none;
 }
 
 
@@ -154,12 +155,13 @@ main {
     height: 150px;
     visibility: hidden; 
     opacity: 100%;
+    display: none;
 }
 
 .avatars {
     height: 39vh;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     background-color: rgb(207, 255, 254, 50%);
 }

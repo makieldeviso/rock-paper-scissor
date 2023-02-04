@@ -52,3 +52,7 @@ Sound Effect by <a href="https://pixabay.com/users/universfield-28281460/?utm_so
 
 Woosh SFX - jhyland
 Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=95844">Pixabay</a>
+
+
+Beeping Robot or Machine - Jofae
+Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=102595">Pixabay</a>
