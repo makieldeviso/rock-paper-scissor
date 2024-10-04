@@ -1,9 +1,9 @@
 # rock-paper-scissor
 
-# About
+## About
 A rock paper scissor game with a cute and refreshing japanese theme.
 
-# Motivation
+## Motivation
 This is a personal project created to showcase skill in creating structured web app though HTML, styling through CSS and adding interactivity though javascript.
 
 This project covers the foundation of javascript such as variables, data types, conditionals and functions to programmatically solve problems.
@@ -12,7 +12,7 @@ This project also encouraged me to make use of javascript developer tools (Chrom
 
 Understanding errors is also a takeaway on this project. By figuring out what went wrong in the code and grasping what kind of error it is, it becomes easier to solve and debug problems. Also, finding where the error originates, initiates the mind how to solve the problem. Meanwhile, I've also learned how to research solutions for errors. In addition, error messages and the debugger is your best friend.
 
-# For the users
+## For the users
 1. The page starts up with a screen that includes a START button. Clicking the button officially starts the game. Note: a music also starts playing so check your volume.
 
 2. The bottom right side of the UI shows the computer character with a dialog. This dialog also informs the user with the current gameplay sequence and results to the user's actions. 
@@ -29,7 +29,7 @@ Understanding errors is also a takeaway on this project. By figuring out what we
 
 8. A reset button will appear on the UI. Clicking this will restart the game.
 
-# For the programmers
+## For the programmers
 Most of the script in the project emphasizes DOM manipulation.
 
 The START button on page load is assigned to an eventListener that adds a round banner, moves the character sprites to position then adds a for loop script to check score requirements.
@@ -42,22 +42,21 @@ The loop force ends on the 100th round when there is no winner yet and announces
 
 The reset button reloads the page to restart the game.
 
-# Live Preview
-This project can be viewed on [text](https://makieldeviso.github.io/rock-paper-scissor/)
+## Live Preview
+This project can be viewed on [rock-paper-scissor](https://makieldeviso.github.io/rock-paper-scissor/)
 
 
-# Asset used
-Dummy Dojo - https://giphy.com/dummydojo - https://media1.giphy.com/media/SwD8zjSqnkz7mv6PtR/giphy.gif?cid=790b761136704740194c668196176ac072e4effd45f3bbb0&rid=giphy.gif&ct=s
+## Asset used
+[Dummy Dojo](https://giphy.com/dummydojo) - [gif src](https://media1.giphy.com/media/SwD8zjSqnkz7mv6PtR/giphy.gif?cid=790b761136704740194c668196176ac072e4effd45f3bbb0&rid=giphy.gif&ct=s)
 
-ProfessorLightWAV - https://media1.giphy.com/media/xV723nBI0NPa4V8kjg/giphy.gif?cid=ecf05e47sbvv633e91no51uajbk2l2rxfmlitzeia1ujsv8f&rid=giphy.gif&ct=s
+[ProfessorLightWAV](https://giphy.com/professorlightwav) - [gif src](https://media1.giphy.com/media/xV723nBI0NPa4V8kjg/giphy.gif?cid=ecf05e47sbvv633e91no51uajbk2l2rxfmlitzeia1ujsv8f&rid=giphy.gif&ct=s)
 
-Chris - https://giphy.com/chris/ - https://media4.giphy.com/media/xT9IgMgdur6larNA1a/giphy.gif?cid=ecf05e47fm71y0kax4vrmjnwbh3fxey2hompkh7i4prrn0e9&rid=giphy.gif&ct=s
+[Chris](https://giphy.com/chris/) - [gif src](https://media4.giphy.com/media/xT9IgMgdur6larNA1a/giphy.gif?cid=ecf05e47fm71y0kax4vrmjnwbh3fxey2hompkh7i4prrn0e9&rid=giphy.gif&ct=s)
 
-adidas - https://giphy.com/channel/adidas - https://giphy.com/gifs/adidas-high-school-football-fns-friday-night-stripes-Q8TlZx35X6xDdJidvT?utm_source=media-link&utm_medium=landing&utm_campaign=Media%20Links&utm_term=
+[adidas](https://giphy.com/channel/adidas) - [gif src](https://giphy.com/gifs/adidas-high-school-football-fns-friday-night-stripes-Q8TlZx35X6xDdJidvT?utm_source=media-link&utm_medium=landing&utm_campaign=Media%20Links&utm_term=)
 
 
-http://imgarcade.com/1/cherry-blossom-petals-transparent -
-https://media3.giphy.com/media/5umDcAQsdJT9e/giphy.gif?cid=ecf05e47s6v1yqza0u8v1fmlm9uxz8ezozumizinov3d9q67&rid=giphy.gif&ct=s
+[gif src](https://media3.giphy.com/media/5umDcAQsdJT9e/giphy.gif?cid=ecf05e47s6v1yqza0u8v1fmlm9uxz8ezozumizinov3d9q67&rid=giphy.gif&ct=s)
 
 
 Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=17882">Pixabay</a>
