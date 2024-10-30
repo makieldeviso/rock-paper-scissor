@@ -121,7 +121,6 @@ function playRoundResultSound(result) {
 // starts the game ---------
 
 async function startGame() {
-
 // initiates the game, puts round banner
     document.querySelector(".round").removeChild(document.querySelector(".start"));
     let roundBanner = document.createElement("h1");
@@ -144,7 +143,7 @@ async function startGame() {
     vsDiv.style.display = "block";
 
 // loops the game rounds to specified required win score
-    for (let i = 0; i <= 100; i++) {
+    for (let i = 0; i <= 100; i++) {    
         
         if (playerScore >=5 || computerScore >=5) {
             if (playerScore > computerScore) {
@@ -227,7 +226,7 @@ async function startGame() {
 // play another round when required score is not yet met
         await playRound(); 
              
-        } //end of for loop -----
+    } //end of for loop -----
 
 // creates a reset button after the game
     let resetButton = document.createElement("button");
@@ -240,7 +239,7 @@ async function startGame() {
     function refresh() {
         location.reload()
     };
-    }
+}
 
 // plays one round ----------------------------
 function playRound() {
@@ -259,7 +258,7 @@ function playRound() {
             resolve();
         });
     }); 
-  }
+}
 
 //   changes dialogue according to result, part of playRound sequence
   function rockVsPaperVsScissors(computerSelection, playerSelection) {
@@ -381,4 +380,9 @@ function toggleStyle() {
         clickedButtons.forEach(button => button.classList.toggle("clicked"));
 }
 
+// Update footer content
+const updateFooterContent = (function () {
+    const footerYear = document.querySelector('#footer-year');
+    footerYear.textContent = (new Date()).getFullYear();
+})();
 

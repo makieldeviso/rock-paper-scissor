@@ -47,6 +47,10 @@ main {
     text-align: center;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 .round {
     height:calc(8vh + 10vh);  /* add the vh of the scoreboard to be visible later */
     background-color: rgba(185, 243, 252, 90%);
@@ -392,11 +396,62 @@ footer {
     text-align: center;
     width: 1000px;
     background-color: #2E0249;
+    padding: var(--padding);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-cont {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
 }
 
 footer p {
-    padding: 6px;
     color: #F9F7D9;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 6px;
+    gap: 4px;
+}
+
+footer a {
+    color: #c699c6;
+    text-decoration: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 3px;
+    transition: 200ms ease-in-out;
+}
+
+footer svg {
+ width: 16px;
+ height: 16px;
+ fill: #F9F7D9;
+}
+
+footer a svg {
+    fill: #c699c6;
+}
+
+footer a:visited, footer a:visited svg {
+    color: #c699c6;
+    fill: #c699c6;
+}
+
+footer a:hover, footer a:hover svg {
+    cursor: pointer;
+    color: #d26693;
+    fill: #d26693;
+}
+
+footer a:active, footer a:active svg {
+    color: #d26693;
+    fill: #d26693;
 }
 
 .before {
